@@ -12,12 +12,12 @@ y_data = 5 * x_data + 3 + noise.clone().detach()  # 生成目标数据，模拟�
 # 初始化模型参数和优化器
 w = torch.tensor([1.0], dtype=torch.float32, requires_grad=True)  # 初始化权重 w 为1.0，并启用梯度计算
 b = torch.tensor([1.0], dtype=torch.float32, requires_grad=True)  # 初始化偏差 b 为1.0，并启用梯度计算
-optimizer = SGD([w, b], lr=0.005)  # 使用随机梯度下降优化器初始化，指定学习率为0.005
+optimizer = SGD([w, b], lr=0.01)  # 使用随机梯度下降优化器初始化，指定学习率为0.005
 loss_fn = torch.nn.MSELoss()  # 使用均方误差损失函数初始化
 losses = []  # 用于存储每个 epoch 的损失值
 
 # 训练模型
-for epoch in range(20):  # 进行30个训练周期
+for epoch in range(30):  # 进行30个训练周期
     optimizer.zero_grad()  # 清零梯度，防止梯度累积
     y_pred = w * x_data + b  # 计算模型的预测值
     loss = loss_fn(y_pred, y_data)  # 计算预测值与真实值之间的均方误差损失
@@ -27,7 +27,7 @@ for epoch in range(20):  # 进行30个训练周期
 
 # 绘制训练损失随 epoch 的变化图
 plt.figure(figsize=(10, 6))
-plt.plot(range(20), losses, label='Loss')  # 绘制损失值随 epoch 的变化曲线
+plt.plot(range(30), losses, label='Loss')  # 绘制损失值随 epoch 的变化曲线
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.title('Training Loss over Epochs')
