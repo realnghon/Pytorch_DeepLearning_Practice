@@ -3,8 +3,9 @@ import matplotlib.pyplot as plt  # 用于绘图
 import numpy as np
 
 # 提供一些示例数据
-x_data = np.linspace(0, 10, 5000)  # 创建一个包含5000个点的线性空间，范围从0到10
-y_data = 5 * x_data + 3 + np.random.normal(0, 1, len(x_data))  # 生成带有噪声的线性数据
+x_data = np.linspace(0, 10, 500)  # 创建一个包含5000个点的线性空间，范围从0到10
+noise = 2 * np.random.rand(500) - 1
+y_data = 5 * x_data + 3 + noise  # 生成带有噪声的线性数据
 
 w = 0  # 初始化权重
 b = 0  # 初始化偏差
@@ -22,8 +23,8 @@ def loss(x, y):
 
 
 # 定义学习率和迭代次数
-learning_rate = 0.005
-num_epochs = 200
+learning_rate = 0.001
+num_epochs = 100
 batch_size = 500  # 小批量样本的大小
 losses = []  # 用于存储每个epoch的损失值
 
